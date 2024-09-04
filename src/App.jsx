@@ -1,12 +1,27 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Component as PieChart } from "./components/shared/pie-chart";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
+
+const Blogs = () => {
+  return <h1>Blog Articles</h1>;
+};
+
+const Home = () => {
+  const user = true;
+  return user ? <h1>Home</h1> : <h1>login</h1>;
+};
 
 function App() {
   return (
-    <div className="p-12">
-      <PieChart />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="blogs" element={<Blogs />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
