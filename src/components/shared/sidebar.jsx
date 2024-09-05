@@ -14,8 +14,13 @@ const Sidebar = () => {
       icon: <FaHouse />,
     },
     {
-      name: "Blogs",
-      url: "/blogs",
+      name: "Cuentas",
+      url: "/cuentas",
+      icon: <FaWarehouse />,
+    },
+    {
+      name: "Transferencias",
+      url: "/transferencias",
       icon: <FaWarehouse />,
     },
     {
