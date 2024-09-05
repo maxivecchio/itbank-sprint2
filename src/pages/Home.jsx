@@ -1,7 +1,6 @@
 import React from "react";
 
 const Home = () => {
-  const user = true;
   return (
     <div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias odit qui
