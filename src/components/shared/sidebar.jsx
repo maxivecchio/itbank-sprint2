@@ -1,9 +1,23 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHouse, FaArrowRightArrowLeft, FaMoneyBill, FaCalculator  } from "react-icons/fa6";
+import {
+  FaHouse,
+  FaArrowRightArrowLeft,
+  FaMoneyBill,
+  FaCalculator,
+} from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 
-const Sidebar = () => {
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
   const location = useLocation();
   const { pathname } = location;
 
@@ -16,7 +30,7 @@ const Sidebar = () => {
     {
       name: "Cuentas",
       url: "/cuentas",
-      icon: <FaMoneyBill  />,
+      icon: <FaMoneyBill />,
     },
     {
       name: "Transferencias",
@@ -26,7 +40,7 @@ const Sidebar = () => {
     {
       name: "Conversor",
       url: "/conversor",
-      icon: <FaCalculator  />,
+      icon: <FaCalculator />,
     },
   ];
 
@@ -39,75 +53,60 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-[300px] fixed bg-gray-200 mt-14 h-[calc(100vh-56px)] p-3">
-      <nav className="flex flex-col justify-between h-full">
-        <div className="flex flex-col gap-1.5">
-          {links1.map((link, index) => (
-            <Link key={index} to={link.url}>
-              <div
-                className={`${
-                  pathname === link.url
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-gray-300"
-                } rounded-lg py-0.5 px-3 w-full flex items-center gap-1.5`}
-              >
-                {link.icon}
-                {link.name}
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="flex flex-col gap-1.5">
-          {links2.map((link, index) => (
-            <Link key={index} to={link.url}>
-              <div
-                className={`${
-                  pathname === link.url
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-gray-300"
-                } rounded-lg py-0.5 px-3 w-full flex items-center gap-1.5`}
-              >
-                {link.icon}
-                {link.name}
-              </div>
-            </Link>
-          ))}
-        </div>
+    <>
+      <aside className="w-[300px] fixed bg-gray-200 mt-14 h-[calc(100vh-56px)] p-3">
+        <nav className="flex flex-col justify-between h-full">
+          <NavLinks links1={links1} links2={links2} pathname={pathname} />
+        </nav>
+      </aside>
+      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+        <SheetContent side="left" className="pt-12">
+          <img className="w-12" src="/logo.webp" alt="Rossum Logo" />
+          <div className="pt-4 flex flex-col justify-between h-[calc(100%-30px)]">
+            <NavLinks links1={links1} links2={links2} pathname={pathname} />
+          </div>
+        </SheetContent>
+      </Sheet>
+    </>
+  );
+};
 
-        {/* <ul>
-              <li>
-                <a href="inicio.html">
-                  <i className="fa-solid fa-house fa-icon"></i> Inicio
-                </a>
-              </li>
-              <li>
-                <a href="cuentas.html">
-                  <i className="fa-solid fa-money-bill fa-icon"></i> Cuentas
-                </a>
-              </li>
-              <li>
-                <a href="transferencias.html">
-                  <i className="fa-solid fa-arrow-right-arrow-left fa-icon"></i>
-                  Transferencias
-                </a>
-              </li>
-              <li>
-                <a href="conversor.html">
-                  <i className="fa-solid fa-calculator fa-icon"></i> Conversor
-                </a>
-              </li>
-            </ul> */}
-      </nav>
-      {/*  <nav>
-            <ul>
-              <li>
-                <a href="configuracion.html">
-                  <i className="fa-solid fa-gear fa-icon"></i> Configuración
-                </a>
-              </li>
-            </ul>
-          </nav> */}
-    </aside>
+const NavLinks = ({ links1, links2, pathname }) => {
+  return (
+    <>
+      <div className="flex flex-col gap-1.5">
+        {links1.map((link, index) => (
+          <Link key={index} to={link.url}>
+            <div
+              className={`${
+                pathname === link.url
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-gray-300"
+              } rounded-lg py-0.5 px-3 w-full flex items-center gap-1.5`}
+            >
+              {link.icon}
+              {link.name}
+            </div>
+          </Link>
+        ))}
+      </div>
+      <div className="flex flex-col gap-1.5">
+        {links2.map((link, index) => (
+          <Link key={index} to={link.url}>
+            <div
+              className={`${
+                pathname === link.url
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-gray-300"
+              } rounded-lg py-0.5 px-3 w-full flex items-center gap-1.5`}
+            >
+              {link.icon}
+              {link.name}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 };
 
