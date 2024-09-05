@@ -8,7 +8,12 @@ import {
 } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -49,14 +54,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     <>
       <aside className="hidden md:block md:w-[220px] lg:w-[300px] fixed bg-gray-200 mt-14 h-[calc(100vh-56px)] p-3">
         <nav className="flex flex-col justify-between h-full">
-          <NavLinks links1={links1} links2={links2} pathname={pathname} />
+          <NavLinks
+            links1={links1}
+            links2={links2}
+            pathname={pathname}
+            setSidebarOpen={setSidebarOpen}
+          />
         </nav>
       </aside>
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="pt-12">
+          <SheetTitle className="sr-only">Menu</SheetTitle>
           <img className="w-12" src="/logo.webp" alt="Rossum Logo" />
           <div className="pt-4 flex flex-col justify-between h-[calc(100%-30px)]">
-            <NavLinks links1={links1} links2={links2} pathname={pathname} />
+            <NavLinks
+              links1={links1}
+              links2={links2}
+              pathname={pathname}
+              setSidebarOpen={setSidebarOpen}
+            />
           </div>
         </SheetContent>
       </Sheet>
@@ -64,13 +80,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   );
 };
 
-const NavLinks = ({ links1, links2, pathname }) => {
+const NavLinks = ({ links1, links2, pathname, setSidebarOpen }) => {
   return (
     <>
       <div className="flex flex-col gap-1.5">
         {links1.map((link, index) => (
           <Link key={index} to={link.url}>
             <div
+              onClick={() => {
+                setSidebarOpen(false);
+              }}
               className={`${
                 pathname === link.url
                   ? "bg-primary text-primary-foreground"
@@ -85,7 +104,13 @@ const NavLinks = ({ links1, links2, pathname }) => {
       </div>
       <div className="flex flex-col gap-1.5">
         {links2.map((link, index) => (
-          <Link key={index} to={link.url}>
+          <Link
+            onClick={(e) => {
+              setSidebarOpen(false);
+            }}
+            key={index}
+            to={link.url}
+          >
             <div
               className={`${
                 pathname === link.url

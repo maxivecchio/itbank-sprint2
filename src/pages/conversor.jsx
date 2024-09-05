@@ -1,60 +1,60 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const currencies = ["USD", "EUR", "ARS", "JPY", "GBP"];
 
-const Conversor = () => {
-  const [inputCurrency, setInputCurrency] = useState("USD");
-  const [outputCurrency, setOutputCurrency] = useState("EUR");
-  const [inputAmount, setInputAmount] = useState(1);
-  const [outputAmount, setOutputAmount] = useState(0);
-  const [isInputChanged, setIsInputChanged] = useState(true);
-
-  const rates = {
-    USD: { EUR: 0.85, ARS: 365, JPY: 110, GBP: 0.75 },
-    EUR: { USD: 1.18, ARS: 429, JPY: 129, GBP: 0.88 },
-    ARS: { USD: 0.0027, EUR: 0.0023, JPY: 0.30, GBP: 0.0020 },
-    JPY: { USD: 0.0091, EUR: 0.0078, ARS: 3.45, GBP: 0.0068 },
-    GBP: { USD: 1.33, EUR: 1.14, ARS: 510, JPY: 150 },
-  };
-
-  const convertCurrency = () => {
-    try {
-      const rate = rates[inputCurrency][outputCurrency];
-
-      if (isInputChanged) {
-        const result = inputAmount * rate;
-        setOutputAmount(result);
-      } else {
-        const result = outputAmount / rate;
-        setInputAmount(result);
-      }
-    } catch (error) {
-      console.error("Error al convertir la moneda", error);
-    }
-  };
+const CurrencyConverter = () => {
+  const [inputCurrency, setInputCurrency] = useState("ARS");
+  const [outputCurrency, setOutputCurrency] = useState("USD");
+  const [amount, setAmount] = useState(1);
+  const [convertedAmount, setConvertedAmount] = useState(0);
+  const [dolarType, setDolarType] = useState("");
+  const [error, setError] = useState("");
+  const [dolarOptions, setDolarOptions] = useState([]);
 
   useEffect(() => {
-    convertCurrency();
-  }, [inputCurrency, outputCurrency, inputAmount, outputAmount, isInputChanged]);
+    // Obtener las tasas de dólar al cargar el componente
+    axios
+      .get("https://dolarapi.com/v1/dolares")
+      .then((response) => {
+        const data = response.data;
+        setDolarOptions(data);
+        setDolarType(data[0]?.casa || ""); // Selecciona el primer tipo de dólar por defecto
+      })
+      .catch((err) => {
+        setError("Error al obtener las tasas de dólar");
+        console.error(err);
+      });
+  }, []);
 
-  const handleInputAmountChange = (e) => {
-    setInputAmount(e.target.value);
-    setIsInputChanged(true);
-  };
+  const convertCurrency = () => {
+    if (amount === "" || isNaN(amount) || amount <= 0) {
+      setError("Por favor, ingrese un número válido");
+      setConvertedAmount(0);
+      return;
+    }
 
-  const handleOutputAmountChange = (e) => {
-    setOutputAmount(e.target.value);
-    setIsInputChanged(false);
+    setError("");
+
+    const selectedRate = dolarOptions.find((option) => option.casa === dolarType);
+    if (selectedRate) {
+      const rate = selectedRate.venta;
+      const result = amount / rate;
+      setConvertedAmount(result.toFixed(3));
+    } else {
+      setError("Tipo de dólar no disponible");
+    }
   };
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-center">Currency Converter</h2>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <div className="flex mb-4">
         <input
           type="number"
-          value={inputAmount}
-          onChange={handleInputAmountChange}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded mr-2"
           placeholder="Amount"
         />
@@ -71,13 +71,17 @@ const Conversor = () => {
         </select>
       </div>
       <div className="flex mb-4">
-        <input
-          type="number"
-          value={outputAmount}
-          onChange={handleOutputAmountChange}
-          className="w-full p-2 border border-gray-300 rounded mr-2"
-          placeholder="Converted Amount"
-        />
+        <select
+          value={dolarType}
+          onChange={(e) => setDolarType(e.target.value)}
+          className="p-2 border border-gray-300 rounded mr-2"
+        >
+          {dolarOptions.map((option) => (
+            <option key={option.casa} value={option.casa}>
+              {option.nombre}
+            </option>
+          ))}
+        </select>
         <select
           value={outputCurrency}
           onChange={(e) => setOutputCurrency(e.target.value)}
@@ -90,8 +94,19 @@ const Conversor = () => {
           ))}
         </select>
       </div>
+      <div className="text-center">
+        <p className="text-lg font-semibold">
+          Converted Amount: {convertedAmount} {outputCurrency}
+        </p>
+        <button
+          onClick={convertCurrency}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Convertir
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Conversor;
+export default CurrencyConverter;
