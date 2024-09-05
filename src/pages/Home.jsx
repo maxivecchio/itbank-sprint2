@@ -45,7 +45,7 @@ const Dashboard = () => {
           <section className="mb-6">
             <div className="bg-white p-4 shadow rounded-xl">
               <h2 className="text-xl font-semibold">Mi Gasto</h2>
-              <img src="./img/chart1.png" alt="Gráfico de gastos" className="w-full h-auto" />
+              <img src="/chart1.png" alt="Gráfico de gastos" className="w-full h-auto" />
             </div>
           </section>
 
