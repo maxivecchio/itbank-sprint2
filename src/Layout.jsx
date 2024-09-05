@@ -12,11 +12,17 @@ const Layout = () => {
 
   return (
     <>
-      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} toggleSidebar={toggleSidebar} />
+      <Header
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        toggleSidebar={toggleSidebar}
+      />
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <div className="pt-14 md:ml-[220px] lg:ml-[300px]">
-        <Outlet />
+        <div className="p-6">
+          <Outlet />
+        </div>
       </div>
     </>
   );
