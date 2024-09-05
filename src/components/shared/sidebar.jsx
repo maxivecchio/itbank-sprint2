@@ -8,16 +8,9 @@ import {
 } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
-const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
+const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
 
