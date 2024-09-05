@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+
 
 import {
   DropdownMenu,
@@ -29,13 +31,10 @@ const Header = () => {
           Juan R Gomez
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel ><FaUser></FaUser> Mi cuenta </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuItem> Ver Perfil</DropdownMenuItem>
+          <DropdownMenuItem>Cerrar Sesión</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
