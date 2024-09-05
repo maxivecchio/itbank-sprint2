@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHouse } from "react-icons/fa6";
-import { FaWarehouse } from "react-icons/fa";
+import { FaHouse, FaArrowRightArrowLeft, FaMoneyBill, FaCalculator  } from "react-icons/fa6";
+import { IoMdSettings } from "react-icons/io";
 
 const Sidebar = () => {
   const location = useLocation();
-  const { hash, pathname, search } = location;
+  const { pathname } = location;
 
   const links1 = [
     {
@@ -16,17 +16,17 @@ const Sidebar = () => {
     {
       name: "Cuentas",
       url: "/cuentas",
-      icon: <FaWarehouse />,
+      icon: <FaMoneyBill  />,
     },
     {
       name: "Transferencias",
       url: "/transferencias",
-      icon: <FaWarehouse />,
+      icon: <FaArrowRightArrowLeft />,
     },
     {
       name: "Conversor",
       url: "/conversor",
-      icon: <FaHouse />,
+      icon: <FaCalculator  />,
     },
   ];
 
@@ -34,7 +34,7 @@ const Sidebar = () => {
     {
       name: "Configuración",
       url: "/configuracion",
-      icon: <FaHouse />,
+      icon: <IoMdSettings />,
     },
   ];
 
