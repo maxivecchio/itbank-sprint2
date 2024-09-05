@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import { TiThMenu } from "react-icons/ti";
+import { MdOutlineLogin } from "react-icons/md";
+
+
 
 import {
   DropdownMenu,
@@ -21,7 +25,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, toggleSidebar }) => {
           className="bg-transparent md:hidden"
           onClick={toggleSidebar}
         >
-          a
+         <TiThMenu />
         </Button>
         <img className="h-7" src="/logo.webp" alt="Rossum Logo" />
         <span className="font-bold ml-2 text-lg hidden md:inline-block">
@@ -34,13 +38,13 @@ const Header = ({ sidebarOpen, setSidebarOpen, toggleSidebar }) => {
             variant: "outline",
           })} bg-transparent`}
         >
-          <FaUser /> Juan R Gomez
+          <FaUser /> <span className="ml-2">Juan R Gomez</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel> Mi cuenta </DropdownMenuLabel>
+          <DropdownMenuLabel> <span>Mi cuenta</span> </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem> Ver Perfil</DropdownMenuItem>
-          <DropdownMenuItem>Cerrar Sesión</DropdownMenuItem>
+          <DropdownMenuItem> <FaUser/> <span className="ml-2">Ver Perfil</span></DropdownMenuItem>
+          <DropdownMenuItem> <MdOutlineLogin/> <span className="ml-2">Cerrar Sesión </span></DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
