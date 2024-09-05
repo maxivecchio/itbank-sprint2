@@ -20,7 +20,7 @@ const Layout = () => {
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <div className="pt-14 md:ml-[220px] lg:ml-[300px]">
-        <div className="p-6">
+        <div className="p-3 md:p-5 lg:p-6">
           <Outlet />
         </div>
       </div>
