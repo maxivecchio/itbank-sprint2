@@ -54,7 +54,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
 
   return (
     <>
-      <aside className="w-[300px] fixed bg-gray-200 mt-14 h-[calc(100vh-56px)] p-3">
+      <aside className="hidden md:block md:w-[220px] lg:w-[300px] fixed bg-gray-200 mt-14 h-[calc(100vh-56px)] p-3">
         <nav className="flex flex-col justify-between h-full">
           <NavLinks links1={links1} links2={links2} pathname={pathname} />
         </nav>
