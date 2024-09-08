@@ -1,5 +1,5 @@
 import React from 'react'
-
+import axios from 'axios'
 const Transferencias = () => {
   return (
     <div class="dashboard max-w-[900px] mx-auto ml-0 text-left">
