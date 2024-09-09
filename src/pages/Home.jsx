@@ -70,10 +70,6 @@ const Dashboard = () => {
 
         
       </div>
-
-      <footer className=" bg-primary text-white p-4 text-center rounded-xl shadow h-15 w-150 ">
-        <p>&copy; 2024 Banco Rossum. Todos los derechos reservados</p>
-      </footer>
     </div>
   );
 };

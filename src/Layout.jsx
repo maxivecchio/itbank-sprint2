@@ -23,6 +23,9 @@ const Layout = () => {
         <div className="p-3 md:p-5 lg:p-6">
           <Outlet />
         </div>
+        <footer className="p-4 text-center border-t">
+          <p>&copy; 2024 Banco Rossum. Todos los derechos reservados</p>
+        </footer>
       </div>
     </>
   );
