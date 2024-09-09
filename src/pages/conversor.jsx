@@ -27,6 +27,7 @@ const CurrencyConverter = () => {
       .catch((err) => {
         setError("Error al obtener las tasas de dólar");
         console.error(err);
+        l;
       });
   }, []);
 
@@ -105,58 +106,91 @@ const CurrencyConverter = () => {
     }
   }, [dolarType]);
 
+  console.log(dolarOptions);
+
   return (
-    <div className="max-w-md mt-10 p-6 bg-white rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center">
-        Conversor de monedas
-      </h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <div className="flex mb-4">
-        <div className="border-2 flex w-full">
-          <input
-            type="number"
-            value={amountARS}
-            onChange={handleARSChange}
-            className="w-full p-2 border-gray-300 rounded mr-2"
-            placeholder="Cantidad en ARS"
-          />
-          <div className="flex items-center justify-center w-64 px-3 bg-gray-100 rounded-tl rounded-bl">
-            ARS
+    <div className="mt-10 rounded-lg">
+      <div className="flex gap-10 flex-col-reverse lg:flex-row">
+        <div className="lg:max-w-xl w-full">
+          <h2 className="text-2xl font-bold mb-4 text-left">Valor del Dólar</h2>
+          <div className="gap-2.5 flex flex-col">
+            {dolarOptions.map((option) => (
+              <div
+                className="border-t-2 p-1.5 bg-white rounded border-primary flex items-center justify-between"
+                key={option.casa}
+              >
+                <div className="flex-1 text-center text-sm lg:text-md">
+                  {option.nombre === "Contado con liquidación"
+                    ? "Dólar Contado con liqui."
+                    : "Dólar " + option.nombre}
+                </div>
+                <div className="flex-1 text-center flex items-center justify-center flex-col">
+                  <span className="text-xs">Compra</span>
+                  <span className="text-lg font-semibold text-primary">
+                    ${option.compra}
+                  </span>
+                </div>
+                <div className="flex-1 text-center flex items-center justify-center flex-col">
+                  <span className="text-xs">Venta</span>
+                  <span className="text-lg font-semibold text-primary">
+                    ${option.venta}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-      <div className="flex mb-4">
-        <div className="border-2 flex w-full">
-          <input
-            type="number"
-            value={amountUSD}
-            onChange={handleUSDChange}
-            className="w-full p-2"
-            placeholder="Cantidad en USD"
-          />
-          {dolarType && (
-            <Select
-              onValueChange={(value) => setDolarType(value)}
-              defaultValue={dolarType}
-            >
-              <SelectTrigger className="border-none w-64 px-3 bg-gray-100">
-                <SelectValue placeholder="Selecciona el tipo de dólar" />
-              </SelectTrigger>
-              <SelectContent>
-                {dolarOptions.map((option) => (
-                  <SelectItem
-                    className=""
-                    key={option.casa}
-                    value={option.casa}
+        <div className="lg:max-w-md">
+          <h2 className="text-2xl font-bold mb-4 text-left">
+            Conversor de monedas
+          </h2>
+          <div className="lg:bg-white rounded-lg lg:p-8">
+            <div className="flex mb-4">
+              <div className="border-2 flex w-full rounded-lg">
+                <input
+                  type="number"
+                  value={amountARS}
+                  onChange={handleARSChange}
+                  className="w-full p-2 border-gray-300 rounded-lg outline-none"
+                  placeholder="Cantidad en ARS"
+                />
+                <div className="flex items-center font-medium justify-center w-64 px-3 bg-gray-100 rounded">
+                  ARS
+                </div>
+              </div>
+            </div>
+            <div className="flex ">
+              <div className="border-2 flex w-full rounded-lg">
+                <input
+                  type="number"
+                  value={amountUSD}
+                  onChange={handleUSDChange}
+                  className="w-full p-2 outline-none rounded-lg"
+                  placeholder="Cantidad en USD"
+                />
+                {dolarType && (
+                  <Select
+                    onValueChange={(value) => setDolarType(value)}
+                    defaultValue={dolarType}
                   >
-                    {option.nombre === "Contado con liquidación"
-                      ? "Dólar Contado con liqui."
-                      : "Dólar " + option.nombre}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
+                    <SelectTrigger className="font-medium border-none w-64 px-3 bg-gray-100">
+                      <SelectValue placeholder="Selecciona el tipo de dólar" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {dolarOptions.map((option) => (
+                        <SelectItem key={option.casa} value={option.casa}>
+                          {option.nombre === "Contado con liquidación"
+                            ? "Dólar Contado con liqui."
+                            : "Dólar " + option.nombre}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              </div>
+            </div>
+            {error && <p className="m-0 mt-3 text-red-500">{error}</p>}
+          </div>
         </div>
       </div>
     </div>

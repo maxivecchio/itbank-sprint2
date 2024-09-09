@@ -20,13 +20,12 @@ const Layout = () => {
       />
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      <div className="pt-14 md:ml-[220px] lg:ml-[300px]">
-        <div className="p-3 md:p-5 lg:p-6">
+      <div className="pt-14 md:ml-[220px] lg:ml-[300px] bg-gray-100">
+        <div className="p-3 md:p-5 lg:p-6 min-h-svh">
           <Outlet />
         </div>
         <Footer />
       </div>
-
     </>
   );
 };
