@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => {
   return (
@@ -17,8 +17,10 @@ const Dashboard = () => {
 
           <section className="mb-6">
             <div className="bg-white p-4 shadow rounded-xl max-w-2xl">
-              <h2 className="text-s font-semibold mb-1" >Mi balance</h2>
-              <span className="text-2xl font-bold text-primary">$43.521,08</span>
+              <h2 className="text-s font-semibold mb-1">Mi balance</h2>
+              <span className="text-2xl font-bold text-primary">
+                $43.521,08
+              </span>
             </div>
           </section>
 
@@ -45,7 +47,11 @@ const Dashboard = () => {
           <section className="mb-6">
             <div className="bg-white p-4 shadow rounded-xl max-w-2xl">
               <h2 className="text-xl font-semibold">Mi Gasto</h2>
-              <img src="/chart1.png" alt="Gráfico de gastos" className="w-full h-auto" />
+              <img
+                src="/chart1.png"
+                alt="Gráfico de gastos"
+                className="w-full h-auto"
+              />
             </div>
           </section>
 
@@ -65,10 +71,8 @@ const Dashboard = () => {
               <div>Tarjeta de débito</div>
               <div className="font-mono">**** **** **** 8321</div>
             </div>
-        </aside>
+          </aside>
         </main>
-
-        
       </div>
     </div>
   );
