@@ -6,12 +6,14 @@ import Cuentas from "./pages/cuentas";
 import Transferencias from "./pages/transferencias";
 import Conversor from "./pages/Conversor";
 import Configuracion from "./pages/configuracion";
+import LoginForm from "./pages/LoginForm";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+            <Route path="/login" element={<LoginForm />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/cuentas" element={<Cuentas />} />

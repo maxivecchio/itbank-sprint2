@@ -44,7 +44,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, toggleSidebar }) => {
           <DropdownMenuLabel> <span>Mi cuenta</span> </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem> <FaUser/> <span className="ml-2">Ver Perfil</span></DropdownMenuItem>
-          <DropdownMenuItem> <MdOutlineLogin/> <span className="ml-2">Cerrar Sesión </span></DropdownMenuItem>
+          <DropdownMenuItem> <MdOutlineLogin/> <span className="ml-2">Cerrar Sesión</span></DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
