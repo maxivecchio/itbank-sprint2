@@ -9,8 +9,9 @@ const Dashboard = () => {
     <div className="flex flex-col min-h-screen ">
       <div className="flex-grow">
         <h1 className="sr-only">Home Banking</h1>
-        <main className="grid grid-cols-5 gap-4 container mx-auto p-4 bg-gray-100 rounded-xl">
-          <section className="col-span-1">
+        <main className="grid grid-cols-4 xl:grid-cols-5 gap-4 container mx-auto sm:p-4 bg-gray-100 rounded-xl">
+          
+          <section className="col-span-4 md:col-span-2 xl:col-span-1">
             <div className="bg-white p-4 shadow h-full rounded-xl max-w-4xl">
               <h2 className="text-s font-semibold mb-1">Mi balance</h2>
               <span className="text-2xl font-bold text-primary">
@@ -19,33 +20,8 @@ const Dashboard = () => {
             </div>
           </section>
 
-          <section className="col-span-2">
-            <Link to="/transferencias">
-              <div className="bg-white p-4 h-full rounded-xl max-w-4xl">
-                <h2 className="text-xl font-semibold">Últimos movimientos</h2>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <div>Transferencia recibida</div>
-                    <div className="text-green-500 font-medium">
-                      + $79.000,00
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div>Insumos médicos</div>
-                    <div className="text-red-500 font-medium">- $5.120,45</div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div>Electrodomésticos</div>
-                    <div className="text-red-500 font-medium">
-                      - $340.000,40
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </section>
 
-          <aside className="col-span-2 h-full bg-white p-4 shadow rounded-xl">
+          <section className="col-span-4 md:col-span-2 h-full bg-white p-4 shadow rounded-xl">
             <Link to="/cuentas">
               <div className="bg-gray-100 p-4 rounded shadow">
                 <div>Tarjeta de crédito</div>
@@ -56,16 +32,42 @@ const Dashboard = () => {
                 <div className="font-mono">**** **** **** 8321</div>
               </div>
             </Link>
-          </aside>
+          </section>
 
-          <section className="col-span-3">
+          <section className="col-span-4 xl:col-span-2">
+            <Link to="/transferencias">
+              <div className="bg-white p-4 h-full rounded-xl max-w-4xl">
+                <h2 className="text-xl font-semibold">Últimos movimientos</h2>
+                <div className="space-y-2">
+                  <div className="flex-col sm:flex-row flex justify-between sm:items-center">
+                    <div>Transferencia recibida</div>
+                    <div className="text-green-500 font-medium">
+                      + $79.000,00
+                    </div>
+                  </div>
+                  <div className="flex-col sm:flex-row flex justify-between sm:items-center">
+                    <div>Insumos médicos</div>
+                    <div className="text-red-500 font-medium">- $5.120,45</div>
+                  </div>
+                  <div className="flex-col sm:flex-row flex justify-between sm:items-center">
+                    <div>Electrodomésticos</div>
+                    <div className="text-red-500 font-medium">
+                      - $340.000,40
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </section>
+
+          <section className="col-span-4 xl:col-span-3">
             <div className="bg-white p-4 shadow rounded-xl max-w-4xl">
               <h2 className="text-xl font-semibold">Mi Gasto - 2024</h2>
               <GastosAnual />
             </div>
           </section>
 
-          <section className="col-span-2">
+          <section className="col-span-4 xl:col-span-2">
             <div className="bg-white h-full p-4 shadow rounded-xl max-w-4xl">
               <h2 className="text-xl font-semibold">Limite Crediticio</h2>
               <GraficoGastos />

@@ -7,7 +7,7 @@ const Cuentas = () => {
     <main className="container mx-auto p-4 bg-gray-100 rounded-lg">
       <div className="dashboard max-w-[900px] mx-auto ml-0 text-left">
         <div>
-          <h1 className="text-3xl font-bold mb-6">Mis Cuentas</h1>
+          <h1 className="text-2xl font-bold mb-6">Mis Cuentas</h1>
         </div>
 
         <div className="accounts-section max-w-lg mx-auto p-4 ml-0">

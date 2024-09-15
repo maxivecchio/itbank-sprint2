@@ -20,7 +20,7 @@ const Transferencias = () => {
 
   return (
     <div className="dashboard max-w-[900px] mx-auto ml-0 text-left">
-      <h1 className="text-3xl font-bold mb-6">Historial de transferencias</h1>
+      <h1 className="text-2xl font-bold mb-6">Historial de transferencias</h1>
       <table className="w-full border-collapse mt-5">
         <thead className="bg-primary text-white">
           <tr>
