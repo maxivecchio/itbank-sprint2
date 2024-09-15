@@ -2,7 +2,18 @@
 
 ![Logo Rossum](https://itbank.moveup.digital/img/logo.webp)
 
+## User & Password:
+User
+```
+    juliana.martinez
+```
+Password
+```
+    Password123
+```
+
 ## 👥 Autores
+
 - [Agustina Méndez](https://github.com/aguiita)
 - [Gustavo David Baya Vargas](https://github.com/gustavobaya)
 - [Octavio Medina](https://github.com/ocmedina)
