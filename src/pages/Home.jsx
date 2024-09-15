@@ -1,22 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Component as GastosAnual } from "@/components/shared/bar-chart";
 
-const Home = () => {
-  return (
-    <div>
-      <Dashboard />
-    </div>
-  );
-};
+import { Component as GraficoGastos } from "@/components/shared/radial-chart";
 
 const Dashboard = () => {
   return (
     <div className="flex flex-col min-h-screen ">
       <div className="flex-grow">
-        <main className="container mx-auto p-4 bg-gray-100 rounded-lg">
-          <h1 className="sr-only">Home Banking</h1>
-
-          <section className="mb-6">
-            <div className="bg-white p-4 shadow rounded-xl max-w-2xl">
+        <h1 className="sr-only">Home Banking</h1>
+        <main className="grid grid-cols-5 gap-4 container mx-auto p-4 bg-gray-100 rounded-xl">
+          <section className="col-span-1">
+            <div className="bg-white p-4 shadow h-full rounded-xl max-w-4xl">
               <h2 className="text-s font-semibold mb-1">Mi balance</h2>
               <span className="text-2xl font-bold text-primary">
                 $43.521,08
@@ -24,54 +19,58 @@ const Dashboard = () => {
             </div>
           </section>
 
-          <section className="mb-6">
-            <div className="bg-white p-4 shadow rounded-xl max-w-2xl  ">
-              <h2 className="text-xl font-semibold">Últimas Transacciones</h2>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <div>Supermercado</div>
-                  <div className="text-red-500">-$79,76</div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div>Insumos médicos</div>
-                  <div className="text-green-500">+$512,45</div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div>Electrodomésticos</div>
-                  <div className="text-red-500">-$34,40</div>
+          <section className="col-span-2">
+            <Link to="/transferencias">
+              <div className="bg-white p-4 h-full rounded-xl max-w-4xl">
+                <h2 className="text-xl font-semibold">Últimos movimientos</h2>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <div>Transferencia recibida</div>
+                    <div className="text-green-500 font-medium">
+                      + $79.000,00
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div>Insumos médicos</div>
+                    <div className="text-red-500 font-medium">- $5.120,45</div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div>Electrodomésticos</div>
+                    <div className="text-red-500 font-medium">
+                      - $340.000,40
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </section>
 
-          <section className="mb-6">
-            <div className="bg-white p-4 shadow rounded-xl max-w-2xl">
-              <h2 className="text-xl font-semibold">Mi Gasto</h2>
-              <img
-                src="/chart1.png"
-                alt="Gráfico de gastos"
-                className="w-full h-auto"
-              />
-            </div>
-          </section>
-
-          <section>
-            <div className="bg-white p-4 shadow rounded-xl max-w-2xl">
-              <h2 className="text-xl font-semibold">Limite Crediticio</h2>
-              <div>$4,000 / $10,000</div>
-            </div>
-          </section>
-
-          <aside className="bg-white p-4 shadow rounded position-fixed right-12 top-12 my-6 mr-">
-            <div className="bg-gray-100 p-4 rounded shadow">
-              <div>Tarjeta de crédito</div>
-              <div className="font-mono">**** **** **** 7526</div>
-            </div>
-            <div className="bg-gray-100 p-4 rounded shadow">
-              <div>Tarjeta de débito</div>
-              <div className="font-mono">**** **** **** 8321</div>
-            </div>
+          <aside className="col-span-2 h-full bg-white p-4 shadow rounded-xl">
+            <Link to="/cuentas">
+              <div className="bg-gray-100 p-4 rounded shadow">
+                <div>Tarjeta de crédito</div>
+                <div className="font-mono">**** **** **** 7526</div>
+              </div>
+              <div className="bg-gray-100 mt-4 p-4 rounded shadow">
+                <div>Tarjeta de débito</div>
+                <div className="font-mono">**** **** **** 8321</div>
+              </div>
+            </Link>
           </aside>
+
+          <section className="col-span-3">
+            <div className="bg-white p-4 shadow rounded-xl max-w-4xl">
+              <h2 className="text-xl font-semibold">Mi Gasto - 2024</h2>
+              <GastosAnual />
+            </div>
+          </section>
+
+          <section className="col-span-2">
+            <div className="bg-white h-full p-4 shadow rounded-xl max-w-4xl">
+              <h2 className="text-xl font-semibold">Limite Crediticio</h2>
+              <GraficoGastos />
+            </div>
+          </section>
         </main>
       </div>
     </div>

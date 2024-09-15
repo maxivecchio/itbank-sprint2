@@ -43,11 +43,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   ];
 
   const links2 = [
-    {
+    /* {
       name: "Configuración",
       url: "/configuracion",
       icon: <IoMdSettings />,
-    },
+    }, */
   ];
 
   return (
